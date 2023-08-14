@@ -1,5 +1,6 @@
 """Chat PDF file"""
 
+import os
 import gradio as gr
 from langchain.chains import ConversationalRetrievalChain
 from langchain.document_loaders import PyPDFLoader
@@ -9,6 +10,15 @@ from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Chroma
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+
+model_path = os.getenv("MODEL_PATH")
+file_path = os.getenv("FILE_PATH")
+vectordb_path = os.getenv("VECTORDB_PATH")
 
 
 class ChatPDF:
@@ -57,8 +67,8 @@ class ChatPDF:
 
     def create_llm(self, temperature: float = 0.7) -> None:
         self.llm = LlamaCpp(
-            # model_path="../models/llama-2-7b-chat.ggmlv3.q4_0.bin",
-            model_path="/home/alanmxll/www/personal/chat-pdf/models/llama-2-7b-chat.ggmlv3.q4_0.bin",
+            # model_path="/home/alanmxll/www/personal/chat-pdf/models/llama-2-7b-chat.ggmlv3.q4_0.bin",
+            model_path=model_path,
             verbose=True,
             n_ctx=2048,
             temperature=temperature,
@@ -96,9 +106,7 @@ class ChatPDF:
         )
 
 
-# files = ["../docs/clean_code.pdf"]
-files = ["/home/alanmxll/www/personal/chat-pdf/docs/clean_code.pdf"]
-vectordb_path = "../docs/chroma"
+files = [file_path]
 
 chat = ChatPDF(files, vectordb_path)
 
