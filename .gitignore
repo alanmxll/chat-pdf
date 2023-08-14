@@ -1,4 +1,5 @@
+.env
 .venv
+.vscode
 models/*.bin
 *.pdf
-.vscode
