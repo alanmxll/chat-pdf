@@ -2,4 +2,6 @@
 .venv
 .vscode
 models/*.bin
+docs/*
+flagged/*
 *.pdf
