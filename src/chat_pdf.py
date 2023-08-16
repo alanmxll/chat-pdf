@@ -1,7 +1,9 @@
 """Chat PDF file"""
 
 import os
+
 import gradio as gr
+from dotenv import load_dotenv
 from langchain.chains import ConversationalRetrievalChain
 from langchain.document_loaders import PyPDFLoader
 from langchain.embeddings import SentenceTransformerEmbeddings
@@ -10,8 +12,6 @@ from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Chroma
-from dotenv import load_dotenv
-
 
 load_dotenv()
 
@@ -65,9 +65,8 @@ class ChatPDF:
 
         self.vectordb = vectordb
 
-    def create_llm(self, temperature: float = 0.7) -> None:
+    def create_llm(self, temperature: float = 0.2) -> None:
         self.llm = LlamaCpp(
-            # model_path="/home/alanmxll/www/personal/chat-pdf/models/llama-2-7b-chat.ggmlv3.q4_0.bin",
             model_path=model_path,
             verbose=True,
             n_ctx=2048,
@@ -139,6 +138,7 @@ with gr.Blocks() as demo:
 
     msg.submit(user, [msg, chatbot], [msg, chatbot], queue=False)
     clear.click(lambda: None, None, chatbot, queue=False)
+
 
 if __name__ == "__main__":
     demo.launch(debug=True)
