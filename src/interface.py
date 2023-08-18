@@ -1,5 +1,7 @@
 """Interface file"""
 
+# pylint: disable=missing-function-docstring
+
 import platform
 
 import gradio as gr
@@ -12,8 +14,8 @@ def say_filename(file):
 
         filename = file.name.split(separator)[-1]
         return {"filename": filename}
-    else:
-        return {"message": "The input file is empty."}
+
+    return {"message": "The input file is empty."}
 
 
 demo = gr.Interface(
