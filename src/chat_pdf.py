@@ -1,5 +1,11 @@
 """Chat PDF file"""
 
+# pylint: disable=redefined-outer-name
+# pylint: disable=attribute-defined-outside-init
+# pylint: disable=missing-class-docstring
+# pylint: disable=missing-function-docstring
+# pylint: disable=invalid-name
+
 import os
 
 import gradio as gr
