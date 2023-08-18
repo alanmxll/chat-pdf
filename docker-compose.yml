@@ -1,0 +1,8 @@
+version: "3.8"
+
+services:
+  redis:
+    image: "redis/redis-stack"
+    container_name: "redis-chunk-server"
+    ports:
+      - "6380:6379"

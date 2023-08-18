@@ -1,6 +1,7 @@
 .env
 .venv
 .vscode
+.ipynb_checkpoints
 models/*.bin
 docs/*
 flagged/*
